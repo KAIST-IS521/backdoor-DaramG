@@ -21,25 +21,33 @@ void dispatch(struct VMContext* ctx, const uint32_t instr) {
 
 // Initializes a VMContext in-place.
 // initVMContext :: VMContext -> uint32_t -> uint32_t -> [Reg] -> [FunPtr] -> Effect()
-void initVMContext(struct VMContext* ctx, const uint32_t numRegs, const uint32_t numFuns, Reg* registers, FunPtr* funtable) {
+void initVMContext(struct VMContext* ctx, const uint32_t numRegs, const uint32_t numFuns, Reg* registers, FunPtr* funtable, uint32_t* code,uint32_t code_size) {
     ctx->numRegs    = numRegs;
     ctx->numFuns    = numFuns;
     ctx->r          = registers;
     ctx->funtable   = funtable;
     ctx->heap = calloc(1,HEAP_SIZE);
+    ctx->code = code;
+    ctx->code_size = code_size;
+    ctx->pc = 0;
 }
 
 
 // Reads an instruction, executes it, then steps to the next instruction.
 // stepVMContext :: VMContext -> uint32_t** -> Effect()
-void stepVMContext(struct VMContext* ctx, uint32_t** pc) {
+void stepVMContext(struct VMContext* ctx) {
     // Read a 32-bit bytecode instruction.
-    uint32_t instr = **pc;
+    if( (ctx->code_size)/4 < (ctx->pc)){
+      uint32_t instr = ctx->code[ctx->pc];
 
-    // Dispatch to an opcode-handler.
-    dispatch(ctx, instr);
+      // Dispatch to an opcode-handler.
+      dispatch(ctx, instr);
 
-    // Increment to next instruction.
-    (*pc)++;
+      // Increment to next instruction.
+      (ctx->pc) +=1;
+    }else{
+      fprintf(stderr,"Invalid PC");
+      exit(-1);
+    }
 }
 

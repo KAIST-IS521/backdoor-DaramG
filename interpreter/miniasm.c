@@ -39,10 +39,10 @@ void eq(struct VMContext* ctx, const uint32_t instr){
   REG(OP1(instr)) = REG(OP2(instr)) == REG(OP3(instr)) ? 1: 0;
 }
 void ite(struct VMContext* ctx, const uint32_t instr){
-  ctx->pc = REG(OP1(instr)) >0 ? OP2(instr): OP3(instr);
+  ctx->pc = REG(OP1(instr)) >0 ? OP2(instr)-1: OP3(instr)-1;
 }
 void jump(struct VMContext* ctx, const uint32_t instr){
-  ctx->pc = OP1(instr);
+  ctx->pc = OP1(instr) -1;
 }
 void asm_puts(struct VMContext* ctx, const uint32_t instr){
   puts( (char *) (REG(OP1(instr))) );

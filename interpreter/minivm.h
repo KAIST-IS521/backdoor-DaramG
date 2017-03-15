@@ -3,7 +3,7 @@
 // Copyright (C) Philip Conrad 4/30/2013 @ 3:56 PM -- MIT License
 //
 //-----------------------------------------------------------------------------
-
+#include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #ifndef MINIVM_H
@@ -38,7 +38,10 @@ typedef struct VMContext {
     uint32_t numFuns;
     Reg* r;           // Ptr to register array.
     FunPtr* funtable; // Ptr to a funptr table.
-    void *heap; // Ptr to heap memory
+    uint8_t *heap; // Ptr to heap memory
+    uint32_t* code; //Ptr to code
+    uint32_t code_size;
+    uint32_t pc; // PC
 } VMContext;
 #define HEAP_SIZE 8192
 
@@ -73,11 +76,12 @@ void initVMContext(struct VMContext* ctx,
                       const uint32_t numRegs,
                       const uint32_t numFuns,
                                 Reg* registers,
-                             FunPtr* funtable);
+                             FunPtr* funtable
+                             uint32_t* code);
 
 // Reads an instruction, executes it, then steps to the next instruction.
 // stepVMContext :: VMContext -> uint32_t** -> Effect()
-void stepVMContext(struct VMContext* ctx, uint32_t** pc);
+void stepVMContext(struct VMContext* ctx);
 
 
 //---------------------------------------------------------
