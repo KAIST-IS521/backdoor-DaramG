@@ -47,8 +47,7 @@ void stepVMContext(struct VMContext* ctx) {
       // Increment to next instruction.
       (ctx->pc) +=1;
     }else{
-      fprintf(stderr,"Invalid PC");
-      exit(-1);
+      ctx->is_running = false;
     }
 }
 
