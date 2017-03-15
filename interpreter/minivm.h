@@ -76,8 +76,9 @@ void initVMContext(struct VMContext* ctx,
                       const uint32_t numRegs,
                       const uint32_t numFuns,
                                 Reg* registers,
-                             FunPtr* funtable
-                             uint32_t* code);
+                             FunPtr* funtable,
+                             uint32_t* code,
+                             uint32_t code_size);
 
 // Reads an instruction, executes it, then steps to the next instruction.
 // stepVMContext :: VMContext -> uint32_t** -> Effect()
