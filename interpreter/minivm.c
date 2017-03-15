@@ -37,7 +37,7 @@ void initVMContext(struct VMContext* ctx, const uint32_t numRegs, const uint32_t
 // stepVMContext :: VMContext -> uint32_t** -> Effect()
 void stepVMContext(struct VMContext* ctx) {
     // Read a 32-bit bytecode instruction.
-    if( (ctx->code_size)/4 < (ctx->pc)){
+    if( (ctx->code_size)/4 > (ctx->pc)){
       uint32_t instr = ctx->code[ctx->pc];
 
       // Dispatch to an opcode-handler.
