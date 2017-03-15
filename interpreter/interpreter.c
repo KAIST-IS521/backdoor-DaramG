@@ -14,6 +14,7 @@ static bool is_running = true;
 
 void usageExit() {
     // TODO: show usage
+    puts("./interpreter <file path of mini-vm-bytecode>");
     exit(1);
 }
 
