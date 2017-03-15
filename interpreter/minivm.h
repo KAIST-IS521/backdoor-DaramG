@@ -5,7 +5,7 @@
 //-----------------------------------------------------------------------------
 
 #include <stdint.h>
-
+#include <stdlib.h>
 #ifndef MINIVM_H
 #define MINIVM_H
 
@@ -38,8 +38,9 @@ typedef struct VMContext {
     uint32_t numFuns;
     Reg* r;           // Ptr to register array.
     FunPtr* funtable; // Ptr to a funptr table.
+    void *heap; // Ptr to heap memory
 } VMContext;
-
+#define HEAP_SIZE 8192
 
 //---------------------------------------------------------
 // ESOTERIC ITEMS:

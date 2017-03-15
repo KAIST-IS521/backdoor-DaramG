@@ -26,6 +26,7 @@ void initVMContext(struct VMContext* ctx, const uint32_t numRegs, const uint32_t
     ctx->numFuns    = numFuns;
     ctx->r          = registers;
     ctx->funtable   = funtable;
+    ctx->heap = calloc(1,HEAP_SIZE);
 }
 
 
