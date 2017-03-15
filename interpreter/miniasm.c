@@ -4,6 +4,7 @@
 #define OP3(a) ((a & 0xff000000) >>24)
 #define REG(a) ctx->r[a].value
 #define MEM(a) ctx->heap[a]
+#define CONV(a) &(ctx->heap[a])
 extern bool is_running;
 
 
@@ -45,8 +46,8 @@ void jump(struct VMContext* ctx, const uint32_t instr){
   ctx->pc = OP1(instr) -1;
 }
 void asm_puts(struct VMContext* ctx, const uint32_t instr){
-  puts( (char *) (REG(OP1(instr))) );
+  puts( (char *) (CONV(REG(OP1(instr)))) );
 }
 void asm_gets(struct VMContext* ctx, const uint32_t instr){
-  gets( (char *) (REG(OP1(instr))) );
+  gets( (char *) (CONV(REG(OP1(instr)))) );
 }
