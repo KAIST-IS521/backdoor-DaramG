@@ -11,7 +11,6 @@
 #define NUM_FUNCS  (256)
 
 // Global variable that indicates if the process is running.
-static bool is_running = true;
 void usageExit() {
     // TODO: show usage
     puts("./interpreter <file path of mini-vm-bytecode>");
@@ -85,7 +84,7 @@ int main(int argc, char** argv) {
     initVMContext(&vm, NUM_REGS, NUM_FUNCS, r, f,code,size);
 
 
-    while (is_running) {
+    while (vm.is_running) {
         // TODO: Read 4-byte bytecode, and set the pc accordingly
         stepVMContext(&vm);
     }

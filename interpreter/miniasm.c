@@ -9,7 +9,7 @@ extern bool is_running;
 
 
 void halt(struct VMContext* ctx, const uint32_t instr){
-  is_running = false;
+  ctx->is_running = false;
 }
 void load(struct VMContext* ctx, const uint32_t instr){
   REG(OP1(instr)) = ((uint32_t)(MEM( REG(OP2(instr)))) & 0xff);

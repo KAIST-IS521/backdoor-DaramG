@@ -30,6 +30,7 @@ void initVMContext(struct VMContext* ctx, const uint32_t numRegs, const uint32_t
     ctx->code = code;
     ctx->code_size = code_size;
     ctx->pc = 0;
+    ctx->is_running = true;
 }
 
 

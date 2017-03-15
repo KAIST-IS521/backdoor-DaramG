@@ -3,6 +3,7 @@
 // Copyright (C) Philip Conrad 4/30/2013 @ 3:56 PM -- MIT License
 //
 //-----------------------------------------------------------------------------
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -42,6 +43,7 @@ typedef struct VMContext {
     uint32_t* code; //Ptr to code
     uint32_t code_size;
     uint32_t pc; // PC
+    bool is_running;
 } VMContext;
 #define HEAP_SIZE 8192
 
