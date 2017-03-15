@@ -46,8 +46,21 @@ void jump(struct VMContext* ctx, const uint32_t instr){
   ctx->pc = OP1(instr) -1;
 }
 void asm_puts(struct VMContext* ctx, const uint32_t instr){
-  puts( (char *) (CONV(REG(OP1(instr)))) );
+  
+  uint32_t v = REG(OP1(instr));
+  if(v<HEAP_SIZE){
+    puts(CONV(v));
+  }else{
+    fprintf(stderr,"puts : invalid memory address");
+    ctx->is_running = false;
+  }
 }
 void asm_gets(struct VMContext* ctx, const uint32_t instr){
-  gets( (char *) (CONV(REG(OP1(instr)))) );
+  uint32_t v = REG(OP1(instr));
+  if(v<HEAP_SIZE){
+    gets(CONV(v));
+  }else{
+    fprintf(stderr,"gets : invalid memory address");
+    ctx->is_running = false;
+  }
 }
