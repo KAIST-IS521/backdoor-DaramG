@@ -1,4 +1,4 @@
-SOURCES = minivm.h minivm.c
+SOURCES = minivm.h minivm.c miniasm.h miniasm.c
 CFLAGS += -Wall -Wextra
 BUILDDIR = build
 
@@ -13,7 +13,13 @@ $(BUILDDIR)/libminivm.a: $(BUILDDIR)/minivm.o
 $(BUILDDIR)/minivm.o: minivm.c
 	$(CC) $(CFLAGS) -g -c minivm.c -o $@
 
-$(BUILDDIR)/interpreter: interpreter.c $(BUILDDIR)/libminivm.a
+$(BUILDDIR)/libminiasm.a: $(BUILDDIR)/miniasm.o
+	ar rcs $(BUILDDIR)/libminiasm.a $(BUILDDIR)/miniasm.o
+
+$(BUILDDIR)/miniasm.o: miniasm.c
+	$(CC) $(CFLAGS) -g -c miniasm.c -o $@
+
+$(BUILDDIR)/interpreter: interpreter.c $(BUILDDIR)/libminivm.a $(BUILDDIR)/libminiasm.a
 	$(CC) $(CFLAGS) -g $^ -o $@
 
 clean:
