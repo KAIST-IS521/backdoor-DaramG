@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 #include "minivm.h"
 void halt(struct VMContext* ctx, const uint32_t instr);
 void load(struct VMContext* ctx, const uint32_t instr);
