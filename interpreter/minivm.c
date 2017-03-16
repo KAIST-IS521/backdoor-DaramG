@@ -19,6 +19,7 @@ void dispatch(struct VMContext* ctx, const uint32_t instr) {
     if (func!=0){
       (*func)(ctx, instr);
     }else{
+      fprintf(stderr,"Invalid opcode\n");
       ctx->is_running = false;
     }
 }
