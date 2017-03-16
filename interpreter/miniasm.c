@@ -6,17 +6,24 @@
 #define MEM(a) ctx->heap[a]
 #define CONV(a) &(ctx->heap[a])
 extern bool is_running;
-
-
-
+void check(uint32_t adr){
+  if(adr >=8192){
+    fprintf(stderr,"Invalid address\n");
+    exit(1);
+  }
+}
 void halt(struct VMContext* ctx, const uint32_t instr){
   ctx->is_running = false;
 }
 void load(struct VMContext* ctx, const uint32_t instr){
-  REG(OP1(instr)) = ((uint32_t)(MEM( REG(OP2(instr)))) & 0xff);
+  uint32_t r2 = REG(OP2(instr));
+  check(r2);
+  REG(OP1(instr)) = ((uint32_t)(MEM(r2)) & 0xff);
 }
 void store(struct VMContext* ctx, const uint32_t instr){
-  MEM(OP1(instr)) = REG(OP2(instr)) & 0xff;
+  uint32_t r1 = REG(OP1(instr));
+  check(r1);
+  MEM(r1) = REG(OP2(instr)) & 0xff;
 }
 void move(struct VMContext* ctx, const uint32_t instr){
   REG(OP1(instr)) = REG(OP2(instr));
