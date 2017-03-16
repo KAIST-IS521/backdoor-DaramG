@@ -15,7 +15,12 @@
 // dispatch :: VMContext -> uint32_t -> Effect()
 void dispatch(struct VMContext* ctx, const uint32_t instr) {
     const uint8_t i = EXTRACT_B0(instr);
-    (*ctx->funtable[i])(ctx, instr);
+    FunPtr func = ctx->funtable[i];
+    if (func!=0){
+      (*func)(ctx, instr);
+    }else{
+      ctx->is_running = false;
+    }
 }
 
 
