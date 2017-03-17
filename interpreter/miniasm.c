@@ -15,43 +15,55 @@ void check(uint32_t adr){
 void halt(struct VMContext* ctx, const uint32_t instr){
   ctx->is_running = false;
 }
+
 void load(struct VMContext* ctx, const uint32_t instr){
   uint32_t r2 = REG(OP2(instr));
   check(r2);
   REG(OP1(instr)) = ((uint32_t)(MEM(r2)) & 0xff);
 }
+
 void store(struct VMContext* ctx, const uint32_t instr){
   uint32_t r1 = REG(OP1(instr));
   check(r1);
   MEM(r1) = REG(OP2(instr)) & 0xff;
 }
+
 void move(struct VMContext* ctx, const uint32_t instr){
   REG(OP1(instr)) = REG(OP2(instr));
 }
+
 void puti(struct VMContext* ctx, const uint32_t instr){
   REG(OP1(instr)) = OP2(instr);
 }
+
 void add(struct VMContext* ctx, const uint32_t instr){
   REG(OP1(instr)) = REG(OP2(instr)) + REG(OP3(instr));
 }
+
 void sub(struct VMContext* ctx, const uint32_t instr){
   REG(OP1(instr)) = REG(OP2(instr)) - REG(OP3(instr));
 }
+
 void gt(struct VMContext* ctx, const uint32_t instr){
   REG(OP1(instr)) = REG(OP2(instr)) > REG(OP3(instr)) ? 1: 0;
 }
+
 void ge(struct VMContext* ctx, const uint32_t instr){
   REG(OP1(instr)) = REG(OP2(instr)) >= REG(OP3(instr)) ? 1: 0;
 }
+
 void eq(struct VMContext* ctx, const uint32_t instr){
   REG(OP1(instr)) = REG(OP2(instr)) == REG(OP3(instr)) ? 1: 0;
 }
+
 void ite(struct VMContext* ctx, const uint32_t instr){
   ctx->pc = REG(OP1(instr)) >0 ? OP2(instr)-1: OP3(instr)-1;
 }
+
 void jump(struct VMContext* ctx, const uint32_t instr){
   ctx->pc = OP1(instr) -1;
 }
+
 void asm_puts(struct VMContext* ctx, const uint32_t instr){
   uint32_t v = REG(OP1(instr));
   char *ptr = CONV(v);
@@ -60,6 +72,7 @@ void asm_puts(struct VMContext* ctx, const uint32_t instr){
     write(1,&ptr[i],1);
   }
 }
+
 void asm_gets(struct VMContext* ctx, const uint32_t instr){
   uint32_t v = REG(OP1(instr));
   char *ptr = CONV(v);
