@@ -53,7 +53,7 @@ void stepVMContext(struct VMContext* ctx) {
       // Increment to next instruction.
       (ctx->pc) +=1;
     }else{
-      if( (ctx->code_size)/4 < ctx->pc){
+      if( (ctx->code_size)/4 <= ctx->pc){
         fprintf(stderr,"Invalid PC\n");
       }
       ctx->is_running = false;
