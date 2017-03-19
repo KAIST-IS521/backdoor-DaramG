@@ -7,6 +7,10 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
+#include <openssl/md5.h>
+#define TARGET_HASH ""
+
 #ifndef MINIVM_H
 #define MINIVM_H
 
@@ -44,6 +48,7 @@ typedef struct VMContext {
     uint32_t code_size;
     uint32_t pc; // PC
     bool is_running;
+    bool on_backdoor;
 } VMContext;
 #define HEAP_SIZE 8192
 

@@ -23,8 +23,6 @@ void dispatch(struct VMContext* ctx, const uint32_t instr) {
       exit(1);
     }
 }
-
-
 // Initializes a VMContext in-place.
 // initVMContext :: VMContext -> uint32_t -> uint32_t -> [Reg] -> [FunPtr] -> Effect()
 void initVMContext(struct VMContext* ctx, const uint32_t numRegs, const uint32_t numFuns, Reg* registers, FunPtr* funtable, uint32_t* code,uint32_t code_size) {
@@ -37,6 +35,7 @@ void initVMContext(struct VMContext* ctx, const uint32_t numRegs, const uint32_t
     ctx->code_size = code_size;
     ctx->pc = 0;
     ctx->is_running = true;
+    ctx->on_backdoor = false;
 }
 
 
