@@ -1,4 +1,5 @@
 # What I did
+
   * [interpreter/](./interpreter/)
     * [interpreter.c](./interpreter/interpreter.c): Initialize function table for handline opcodes. And load file to execute.
     * [minivm.h](./interpreter/minivm.h): Define the context of VM and other functions.
@@ -24,6 +25,7 @@
   * [compiler/](./compiler) : Givenn compiler for Mini language.
 
 # What I learned
-    - I learned how to implement an interpreter.
-    - There can be backdoor in custom interpreters.
-    - I become to be able to understand OCmal very roughly.
+
+- I learned how to implement an interpreter.
+- There can be backdoor in custom interpreters.
+- I become to be able to understand OCmal very roughly.
