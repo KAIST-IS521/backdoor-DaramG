@@ -24,3 +24,6 @@
   * [compiler/](./compiler) : Givenn compiler for Mini language.
 
 # What I learned
+    - I learned how to implement an interpreter.
+    - There can be backdoor in custom interpreters.
+    - I become to be able to understand OCmal very roughly.
