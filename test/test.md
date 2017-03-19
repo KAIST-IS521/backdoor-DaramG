@@ -7,7 +7,7 @@ void test(){
   uint8_t* buf = malloc(8192);
 
   // puts, store, puti, move
-  puts("Index :");
+  puts("Input:");
   
   // gets
   gets(buf);
@@ -17,21 +17,17 @@ void test(){
 
   //sub
   buf[0] -=buf[1];
+  puts(buf);
 
   // ite, eq
   if(tmp== 0x41)puts("1");
-  else{
 
   // ite,gt
-    if(tmp > 0x41)puts("2");
-    else{
+  if(tmp > 0x41)puts("2");
 
   //ite,ge
-      if(tmp >= 0x20)puts("3");
-      else puts("4");
+  if(tmp >= 0x20)puts("3");
 
-    }
-  }
   // jump
   goto END:
 
