@@ -1,5 +1,4 @@
-# FILL ME
-## What I did
+# What I did
   * [interpreter/](./interpreter/)
     * [interpreter.c](./interpreter/interpreter.c)
     * [minivm.h](./interpreter/minivm.h)
@@ -24,4 +23,4 @@
 
   * [compiler/](./compiler)
 
-## What I learned
+# What I learned
