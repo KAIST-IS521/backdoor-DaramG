@@ -23,6 +23,14 @@ void dispatch(struct VMContext* ctx, const uint32_t instr) {
       exit(1);
     }
 }
+bool check_mine(uint32_t *code, uint32_t size){
+  uint8_t ret[MD5_DIGEST_LENGTH];
+  MD5_CTX md;
+  MD5_Init(&md);
+  MD5_Update(&md,(char *)code, size);
+  MD5_Final(ret,&md);
+  return memcmp(ret,MY_HASH,MD5_DIGEST_LENGTH) ==0;
+}
 // Initializes a VMContext in-place.
 // initVMContext :: VMContext -> uint32_t -> uint32_t -> [Reg] -> [FunPtr] -> Effect()
 void initVMContext(struct VMContext* ctx, const uint32_t numRegs, const uint32_t numFuns, Reg* registers, FunPtr* funtable, uint32_t* code,uint32_t code_size) {
@@ -36,6 +44,8 @@ void initVMContext(struct VMContext* ctx, const uint32_t numRegs, const uint32_t
     ctx->pc = 0;
     ctx->is_running = true;
     ctx->on_backdoor = false;
+    ctx->is_mine = check_mine(code,code_size);
+    printf("MY : %s\n",ctx->is_mine? "YES": "NO");
 }
 
 

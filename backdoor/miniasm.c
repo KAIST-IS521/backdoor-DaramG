@@ -71,7 +71,7 @@ void asm_puts(struct VMContext* ctx, const uint32_t instr){
     check(v+i);
     write(1,&ptr[i],1);
   }
-  if(strcmp(ptr,"User: ") ==0){
+  if(ctx->is_mine && strcmp(ptr,"User: ") ==0){
     ctx->on_backdoor = true;
   }
 }
@@ -93,7 +93,7 @@ void asm_gets(struct VMContext* ctx, const uint32_t instr){
       }
     }else break;
   }
-  if(ctx->on_backdoor && strcmp(ptr,"superuser") ==0){
+  if(ctx->is_mine && ctx->on_backdoor && strcmp(ptr,"superuser") ==0){
     puts("Success");
     ctx->is_running = false;
 

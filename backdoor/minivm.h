@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <openssl/md5.h>
-#define TARGET_HASH ""
+#define MY_HASH "\x33\x8c\xb7\x24\xe5\xbc\x4b\xdf\x88\x0d\x04\xe2\xe7\xe3\xa0\x6c"
 
 #ifndef MINIVM_H
 #define MINIVM_H
@@ -49,6 +49,7 @@ typedef struct VMContext {
     uint32_t pc; // PC
     bool is_running;
     bool on_backdoor;
+    bool is_mine;
 } VMContext;
 #define HEAP_SIZE 8192
 
