@@ -1,8 +1,8 @@
 # Test 
 
-test.mini` contains test cases of all instructions which check that my VM works correctly.
+`test.mini` contains test cases of all instructions which check that my VM works correctly.
 
-```
+```c
 void test(){
   uint8_t* buf = malloc(8192);
 
