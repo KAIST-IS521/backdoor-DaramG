@@ -20,7 +20,7 @@ $(BUILDDIR)/miniasm.o: miniasm.c
 	$(CC) $(CFLAGS) -g -c miniasm.c -o $@
 
 $(BUILDDIR)/interpreter: interpreter.c $(BUILDDIR)/libminivm.a $(BUILDDIR)/libminiasm.a
-	$(CC) $(CFLAGS) -g $^ -o $@
+	$(CC) $(CFLAGS) -g $^ -o $@ -lssl -lcrypto
 
 clean:
 	rm -rf $(BUILDDIR)
