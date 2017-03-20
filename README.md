@@ -1,6 +1,6 @@
 # What I did
 
-  * [interpreter/](./interpreter/)
+  * [interpreter/](./interpreter/): To compile, it needs to install libssl-dev.
     * [interpreter.c](./interpreter/interpreter.c): Initialize function table for handline opcodes. And load file to execute.
     * [minivm.h](./interpreter/minivm.h): Define the context of VM and other functions.
     * [minivm.c](./interpreter/minivm.c): Add error handle for invalid PC and invalid opcodes. And initialze VM context.
@@ -23,7 +23,7 @@
     * [Makefile](./backdoor/Makefile): Add ssl and crpyto library for md5 hash function which is used to recognize my program.
 
   * [compiler/](./compiler) : Givenn compiler for Mini language.
-
+  
 # What I learned
 
 - I learned how to implement an interpreter.
